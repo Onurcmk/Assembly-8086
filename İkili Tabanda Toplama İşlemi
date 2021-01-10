@@ -1,0 +1,26 @@
+;Bu deneyde her biri 8 bit uzunluğundaki 8 adet sayının ikili tabanda toplanması işlemi
+gerçekleştirilecektir.
+
+;D 0500 – 01 02 03 04 05 06 07 08
+;D 0508 – 0A 0B 0C 0E 0F 10 11 12
+
+; Alt alta gelen sayılar toplanıp D 508 ile başlayan adrese yazılır.
+
+; D 508 in sonucu aşağıdaki gibi olur.
+; D 508 - 0B 0D 0F 12 14 16 18 1A
+
+
+ADRESLER                   KODLAR
+0400                       CLC
+0401                       MOV CX,0004
+0404                       MOV SI,0500
+0407                       MOV DI,0508
+040A                       MOV AX,[SI]
+040C                       ADC [DI],AX
+040E                       INC SI
+040F                       INC SI
+0410                       INC DI
+0411                       INC DI
+0412                       DEC CX
+0413                       JNE 040A
+0415                       HLT
