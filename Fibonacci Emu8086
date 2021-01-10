@@ -1,0 +1,23 @@
+;Fibonacci dizisinin ilk 10 teriminin assembly kodu ;Kodun ismini tanımladım
+.MODEL SMALL
+.STACK 64
+.DATA                              ;degiskenler tanimlandi ;değişken dosyalarını tanımlamayı başlattım
+     FIB_NUM DB 10                      ;10 haneliyi belirttim
+     FIB_LIST DB 50 DUP(?)
+.CODE                              ;kodlari yazmaya baslandi segmentleri yazdım ;segment yazmaçlarını belirtmeye başladığım yer
+     MAIN PROC FAR
+        MOV AX,@DATA      
+        MOV DS,AX
+        LEA SI,FIB_LIST            ;bellek adresinin yazmaca aktarmasi icin kullandim   ; bellek adresinin yazmaca aktarmasi icin kullandim   
+        MOV CL,FIB_NUM     ;döngünün tekrar sayısını belirttim
+        MOV AX,01H                 ;fibonaccinin ilk değeri  ;fibonaccinin değerlerini belirttim
+         MOV BX,00H         ;fibonacci dizisi elemanı
+        FIB:
+              ADD AX,BX            ;toplama islemleri icin  ADD komutunu kullandim ;fibonacci toplama işlemlerinden oluştuğu için AX,BX i kullandım
+              MOV [SI],AX          ;AX degerini SI degeri oldu    
+              MOV AX,BX         ;AX değeri olarak  BX deki değer aktarıldı
+              MOV BX,[SI]        ;SI yazmacındaki değeri BX yazmacına atadım
+              INC SI                   ;Fibonacci dizisinde yeni değerin gelmesini istedim
+              LOOP FIB              ;loop komutu ile dongunun tekrari saglandi ;yaptığımız döngünün tekrarını sağlar dizi boyunca
+         MAIN ENDP
+END MAIN
