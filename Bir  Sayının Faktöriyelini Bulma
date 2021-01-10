@@ -1,0 +1,10 @@
+;Bu deneyde verilen bir sayının faktöriyelinin bulunması gerçekleştirilecektir.
+Adresler:          Komutlar:
+0400               MOV CX, [0500]
+0403               MOV AX, 0001
+0406               MOV DX, 0000
+040A               MUL CX
+040C               LOOP 040A
+040E               MOV [0600], AX
+0412               MOV [0601], DX
+0416               HLT
